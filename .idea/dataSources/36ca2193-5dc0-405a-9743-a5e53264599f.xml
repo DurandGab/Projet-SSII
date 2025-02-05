@@ -169,13 +169,75 @@
     <schema id="162" parent="2" name="INFORMATION_SCHEMA"/>
     <schema id="163" parent="2" name="PUBLIC">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2025-02-03.12:53:09</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2025-02-05.10:51:49</LastIntrospectionLocalTimestamp>
     </schema>
     <user id="164" parent="2" name="SA">
       <Admin>1</Admin>
     </user>
-    <table id="165" parent="163" name="PERSONNE"/>
-    <column id="166" parent="165" name="MATRICULE">
+    <table id="165" parent="163" name="PARTICIPATION"/>
+    <table id="166" parent="163" name="PERSONNE"/>
+    <table id="167" parent="163" name="PROJET"/>
+    <column id="168" parent="165" name="ID">
+      <ColumnKind>generated-stored</ColumnKind>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>INTEGER|0s</StoredType>
+      <SequenceInline>1</SequenceInline>
+      <SequenceSequenceIdentity>1(1)</SequenceSequenceIdentity>
+      <SequenceStartValue>1</SequenceStartValue>
+      <SequenceStoredType>INTEGER|0s</SequenceStoredType>
+    </column>
+    <column id="169" parent="165" name="PERSONNE_ID">
+      <Position>2</Position>
+      <StoredType>INTEGER|0s</StoredType>
+    </column>
+    <column id="170" parent="165" name="POURCENTAGE">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>REAL|0s</StoredType>
+    </column>
+    <column id="171" parent="165" name="PROJET_ID">
+      <Position>4</Position>
+      <StoredType>INTEGER|0s</StoredType>
+    </column>
+    <column id="172" parent="165" name="ROLE">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StoredType>CHARACTER VARYING(255)|0s</StoredType>
+    </column>
+    <foreign-key id="173" parent="165" name="FK9DY7DU1QLYKNS9JLOBQ7XCT6W">
+      <ColNames>PERSONNE_ID</ColNames>
+      <OnDelete>restrict</OnDelete>
+      <OnUpdate>restrict</OnUpdate>
+      <RefKeyName>CONSTRAINT_4</RefKeyName>
+      <RefTableName>PERSONNE</RefTableName>
+    </foreign-key>
+    <foreign-key id="174" parent="165" name="FK6Y0EDDRK8579YGMGS7DAO112V">
+      <ColNames>PROJET_ID</ColNames>
+      <OnDelete>restrict</OnDelete>
+      <OnUpdate>restrict</OnUpdate>
+      <RefKeyName>CONSTRAINT_8</RefKeyName>
+      <RefTableName>PROJET</RefTableName>
+    </foreign-key>
+    <index id="175" parent="165" name="PRIMARY_KEY_6">
+      <ColNames>ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Unique>1</Unique>
+    </index>
+    <index id="176" parent="165" name="FK9DY7DU1QLYKNS9JLOBQ7XCT6W_INDEX_6">
+      <ColNames>PERSONNE_ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+    </index>
+    <index id="177" parent="165" name="FK6Y0EDDRK8579YGMGS7DAO112V_INDEX_6">
+      <ColNames>PROJET_ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+    </index>
+    <key id="178" parent="165" name="CONSTRAINT_6">
+      <ColNames>ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="179" parent="166" name="MATRICULE">
       <ColumnKind>generated-stored</ColumnKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -185,18 +247,75 @@
       <SequenceStartValue>1</SequenceStartValue>
       <SequenceStoredType>INTEGER|0s</SequenceStoredType>
     </column>
-    <column id="167" parent="165" name="NOM">
-      <NotNull>1</NotNull>
+    <column id="180" parent="166" name="SUPERIEUR_MATRICULE">
       <Position>2</Position>
+      <StoredType>INTEGER|0s</StoredType>
+    </column>
+    <column id="181" parent="166" name="NOM">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
       <StoredType>CHARACTER VARYING(255)|0s</StoredType>
     </column>
-    <index id="168" parent="165" name="PRIMARY_KEY_4">
+    <column id="182" parent="166" name="POSTE">
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StoredType>CHARACTER VARYING(255)|0s</StoredType>
+    </column>
+    <column id="183" parent="166" name="PRENOM">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StoredType>CHARACTER VARYING(255)|0s</StoredType>
+    </column>
+    <foreign-key id="184" parent="166" name="FKEJ4FDSTP8NVCHDFSK6OCO1981">
+      <ColNames>SUPERIEUR_MATRICULE</ColNames>
+      <OnDelete>restrict</OnDelete>
+      <OnUpdate>restrict</OnUpdate>
+      <RefKeyName>CONSTRAINT_4</RefKeyName>
+      <RefTableName>PERSONNE</RefTableName>
+    </foreign-key>
+    <index id="185" parent="166" name="PRIMARY_KEY_4">
       <ColNames>MATRICULE</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="169" parent="165" name="CONSTRAINT_4">
+    <index id="186" parent="166" name="FKEJ4FDSTP8NVCHDFSK6OCO1981_INDEX_4">
+      <ColNames>SUPERIEUR_MATRICULE</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+    </index>
+    <key id="187" parent="166" name="CONSTRAINT_4">
       <ColNames>MATRICULE</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="188" parent="167" name="CODE">
+      <ColumnKind>generated-stored</ColumnKind>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>INTEGER|0s</StoredType>
+      <SequenceInline>1</SequenceInline>
+      <SequenceSequenceIdentity>1(1)</SequenceSequenceIdentity>
+      <SequenceStartValue>1</SequenceStartValue>
+      <SequenceStoredType>INTEGER|0s</SequenceStoredType>
+    </column>
+    <column id="189" parent="167" name="DEBUT">
+      <Position>2</Position>
+      <StoredType>DATE|0s</StoredType>
+    </column>
+    <column id="190" parent="167" name="FIN">
+      <Position>3</Position>
+      <StoredType>DATE|0s</StoredType>
+    </column>
+    <column id="191" parent="167" name="NOM">
+      <Position>4</Position>
+      <StoredType>CHARACTER VARYING(255)|0s</StoredType>
+    </column>
+    <index id="192" parent="167" name="PRIMARY_KEY_8">
+      <ColNames>CODE</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Unique>1</Unique>
+    </index>
+    <key id="193" parent="167" name="CONSTRAINT_8">
+      <ColNames>CODE</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>

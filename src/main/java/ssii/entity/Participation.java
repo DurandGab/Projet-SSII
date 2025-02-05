@@ -1,9 +1,6 @@
 package ssii.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
@@ -21,6 +18,12 @@ public class Participation {
     @NotBlank
     @NonNull // lombok
     private String role;
-
     private float pourcentage;
+    @ManyToOne
+    @JoinColumn(name = "personne_id")
+    private Personne personne;
+
+    @ManyToOne
+    @JoinColumn(name = "projet_id")
+    private Projet projet;
 }
